@@ -40,9 +40,19 @@
       </form>
       <div class="auth-switch" id="authSwitch">New to Academy Treasury? <button class="text-btn" id="switchMode">Create an account</button></div>
       <div class="auth-foot">Your academy's financial information should be accessible, understandable and protected. <br>By continuing, you agree to your academy's access and privacy policies.</div>
-      <div id="demoNotice" class="notice hidden" style="margin-top:18px"><strong>Preview mode:</strong> Firebase is not configured yet. You can explore the interface with sample data, but real sign-in and cloud storage are unavailable until configuration is added.</div>
-      <button id="demoBtn" class="btn btn-outline" style="width:100%;margin-top:12px">Explore interactive preview</button>
+
     </div></section>
+  </div>
+
+  <div id="pendingScreen" class="auth-screen hidden">
+    <section class="auth-card-wrap" style="grid-column:1/-1;min-height:100vh">
+      <div class="auth-card" style="text-align:center">
+        <div class="brand-mark" style="margin:0 auto 22px"><i data-lucide="shield-check"></i></div>
+        <h2 id="pendingTitle">Account inactive</h2>
+        <p id="pendingMessage">This account is not active. Please contact an authorised administrator.</p>
+        <button class="btn btn-primary" id="pendingSignOut" type="button" style="width:100%">Sign out</button>
+      </div>
+    </section>
   </div>
 
   <div id="appShell" class="app-shell hidden">
@@ -61,27 +71,27 @@
         <button class="nav-item admin-only hidden" data-page="settings"><i data-lucide="settings-2"></i><span>Admin settings</span></button>
         <button class="nav-item admin-only hidden" data-page="audit"><i data-lucide="clipboard-list"></i><span>Audit trail</span></button>
       </nav>
-      <div class="sidebar-bottom"><div class="secure-note"><i data-lucide="shield-check" style="width:18px;color:#65d6a9"></i><strong>Visibility, not control</strong><p>Members can view financial activity. This app does not move money or replace your bank.</p></div><div class="user-mini"><div class="avatar" id="sideAvatar">AT</div><div><strong id="sideName">Preview Member</strong><small id="sideRole">Member access</small></div></div></div>
+      <div class="sidebar-bottom"><div class="secure-note"><i data-lucide="shield-check" style="width:18px;color:#65d6a9"></i><strong>Visibility, not control</strong><p>Members can view financial activity. This app does not move money or replace your bank.</p></div><div class="user-mini"><div class="avatar" id="sideAvatar">AT</div><div><strong id="sideName">Academy Member</strong><small id="sideRole">Member access</small></div></div></div>
     </aside>
     <main class="main">
-      <header class="topbar"><div class="crumb">Academy / <strong id="crumbPage">Overview</strong></div><div class="top-actions"><button class="icon-btn" id="topBell" title="Notifications"><i data-lucide="bell"></i><b class="dot"></b></button><div class="top-profile"><div class="avatar" id="topAvatar">AT</div><span id="topName">Preview Member</span></div><button class="icon-btn" id="logoutBtn" title="Sign out"><i data-lucide="log-out"></i></button></div></header>
+      <header class="topbar"><div class="crumb">Academy / <strong id="crumbPage">Overview</strong></div><div class="top-actions"><button class="icon-btn" id="topBell" title="Notifications"><i data-lucide="bell"></i><b class="dot"></b></button><div class="top-profile"><div class="avatar" id="topAvatar">AT</div><span id="topName">Academy Member</span></div><button class="icon-btn" id="logoutBtn" title="Sign out"><i data-lucide="log-out"></i></button></div></header>
       <div class="content">
         <section class="page" id="page-dashboard">
           <div class="page-head"><div><div class="eyebrow">YOUR FINANCIAL OVERVIEW</div><h1 id="welcomeTitle">Good afternoon</h1><p>Here's what's happening with your academy's funds.</p></div><button class="btn btn-light" id="dashboardRefresh"><i data-lucide="refresh-cw"></i> Refresh overview</button></div>
           <div class="grid stats">
-            <article class="stat-card"><div class="stat-top">Available balance <span class="stat-icon"><i data-lucide="wallet"></i></span></div><div class="stat-value" id="statBalance">₦2,485,600.00</div><div class="stat-foot">Last synced <span id="syncTime">just now · preview data</span></div></article>
-            <article class="stat-card"><div class="stat-top">Total received <span class="stat-icon"><i data-lucide="trending-up"></i></span></div><div class="stat-value" id="statIn">₦845,000</div><div class="stat-foot"><span class="positive">Incoming</span> · selected period</div></article>
-            <article class="stat-card"><div class="stat-top">Total spent <span class="stat-icon"><i data-lucide="trending-down"></i></span></div><div class="stat-value" id="statOut">₦312,400</div><div class="stat-foot">Outgoing · selected period</div></article>
-            <article class="stat-card"><div class="stat-top">Transactions <span class="stat-icon"><i data-lucide="receipt"></i></span></div><div class="stat-value" id="statCount">128</div><div class="stat-foot">Recorded activity</div></article>
+            <article class="stat-card"><div class="stat-top">Ledger balance <span class="stat-icon"><i data-lucide="wallet"></i></span></div><div class="stat-value" id="statBalance">₦0.00</div><div class="stat-foot">Last synced <span id="syncTime">awaiting first sync</span></div></article>
+            <article class="stat-card"><div class="stat-top">Approved income <span class="stat-icon"><i data-lucide="trending-up"></i></span></div><div class="stat-value" id="statIn">₦0.00</div><div class="stat-foot"><span class="positive">Incoming</span> · all synced records</div></article>
+            <article class="stat-card"><div class="stat-top">Paid payouts <span class="stat-icon"><i data-lucide="trending-down"></i></span></div><div class="stat-value" id="statOut">₦0.00</div><div class="stat-foot">Outgoing · all synced records</div></article>
+            <article class="stat-card"><div class="stat-top">Transactions <span class="stat-icon"><i data-lucide="receipt"></i></span></div><div class="stat-value" id="statCount">0</div><div class="stat-foot">Recorded activity</div></article>
           </div>
           <div class="grid overview-grid">
             <div class="grid" style="gap:18px">
-              <article class="panel balance-panel"><div class="balance-label"><i data-lucide="landmark" style="width:15px"></i> ACADEMY ACCOUNT BALANCE <span style="background:#ffffff22;border-radius:20px;padding:4px 8px;font-size:9px">PREVIEW</span></div><div class="balance-amount" id="heroBalance">₦2,485,600.00</div><div class="balance-meta">Illustrative balance · not connected to a financial provider</div><div class="balance-bottom"><div><span>ACCOUNT HOLDER</span><strong id="accountHolder">Academy General Fund</strong></div><div><span>ACCOUNT NUMBER</span><strong>•••• •••• 4821</strong></div><div><span>PROVIDER</span><strong>Not connected</strong></div></div><div class="balance-actions"><button class="btn btn-light" data-goto="transactions"><i data-lucide="list"></i> View activity</button><button class="btn btn-light" data-goto="reports"><i data-lucide="download"></i> Reports</button></div></article>
-              <article class="panel"><div class="panel-head"><div><h2>Cash flow</h2><p>Illustrative monthly activity</p></div><select class="select" id="chartPeriod"><option>Last 6 months</option><option>Last 12 months</option></select></div><div class="chart-wrap"><canvas id="cashChart"></canvas></div><div class="legend"><span><i></i> Money received</span><span><i class="out"></i> Money spent</span></div></article>
+              <article class="panel balance-panel"><div class="balance-label"><i data-lucide="landmark" style="width:15px"></i> INTERNAL LEDGER BALANCE</div><div class="balance-amount" id="heroBalance">₦0.00</div><div class="balance-meta">Approved income less completed payouts · not a bank balance</div><div class="balance-bottom"><div><span>SOURCE</span><strong>Invoice X Pro</strong></div><div><span>LEDGER</span><strong>Academy Treasury</strong></div><div><span>SYNC</span><strong id="ledgerSyncStatus">Awaiting records</strong></div></div><div class="balance-actions"><button class="btn btn-light" data-goto="transactions"><i data-lucide="list"></i> View activity</button><button class="btn btn-light" data-goto="reports"><i data-lucide="download"></i> Reports</button></div></article>
+              <article class="panel"><div class="panel-head"><div><h2>Cash flow</h2><p>Monthly totals from synced ledger entries</p></div><select class="select" id="chartPeriod"><option>Last 6 months</option><option>Last 12 months</option></select></div><div class="chart-wrap"><canvas id="cashChart"></canvas></div><div class="legend"><span><i></i> Money received</span><span><i class="out"></i> Money spent</span></div></article>
             </div>
             <div class="right-stack">
               <article class="panel"><div class="panel-head"><div><h2>Recent activity</h2><p>Latest account movements</p></div><button class="text-btn" data-goto="transactions" style="font-size:11px">See all</button></div><div class="quick-list" id="recentList"></div></article>
-              <article class="panel"><div class="panel-head"><div><h2>Transparency promise</h2></div><i data-lucide="shield-check" style="color:var(--green)"></i></div><div class="notice"><strong>Independent visibility.</strong> Academy Treasury is designed to display financial information from your authorised bank or fintech provider. It does not hold funds, initiate transfers or replace official account statements.</div><div style="margin-top:14px;font-size:10px;color:var(--muted)">Data source: <strong id="dataSource" style="color:#61766e">Sample preview data</strong></div></article>
+              <article class="panel"><div class="panel-head"><div><h2>Transparency promise</h2></div><i data-lucide="shield-check" style="color:var(--green)"></i></div><div class="notice"><strong>Independent visibility.</strong> Academy Treasury records approved Invoice X Pro income and completed payouts. It does not hold funds, initiate transfers or represent a bank balance.</div><div style="margin-top:14px;font-size:10px;color:var(--muted)">Data source: <strong id="dataSource" style="color:#61766e">Invoice X Pro ledger</strong></div></article>
             </div>
           </div>
           <article class="panel activity"><div class="panel-head"><div><h2>Latest transactions</h2><p>A clear record of money in and money out</p></div><button class="btn btn-light" data-goto="transactions">All transactions <i data-lucide="arrow-up-right"></i></button></div><div class="table-wrap"><table><thead><tr><th>Transaction</th><th>Reference</th><th>Date</th><th>Status</th><th style="text-align:right">Amount</th></tr></thead><tbody id="dashboardTx"></tbody></table></div></article>
@@ -92,28 +102,28 @@
         </section>
         <section class="page hidden" id="page-reports">
           <div class="page-head"><div><div class="eyebrow">INSIGHTS & ACCOUNTABILITY</div><h1>Financial reports</h1><p>Understand the academy's income, spending and recorded activity.</p></div><button class="btn btn-primary" id="reportExport"><i data-lucide="file-down"></i> Download report</button></div>
-          <div class="grid stats"><article class="stat-card"><div class="stat-top">Income recorded<span class="stat-icon"><i data-lucide="arrow-down-left"></i></span></div><div class="stat-value" id="reportIn">₦845,000</div><div class="stat-foot">Sample period</div></article><article class="stat-card"><div class="stat-top">Spending recorded<span class="stat-icon"><i data-lucide="arrow-up-right"></i></span></div><div class="stat-value" id="reportOut">₦312,400</div><div class="stat-foot">Sample period</div></article><article class="stat-card"><div class="stat-top">Net movement<span class="stat-icon"><i data-lucide="scale"></i></span></div><div class="stat-value" id="reportNet">₦532,600</div><div class="stat-foot">Income less spending</div></article><article class="stat-card"><div class="stat-top">Recorded entries<span class="stat-icon"><i data-lucide="files"></i></span></div><div class="stat-value" id="reportCount">128</div><div class="stat-foot">All statuses</div></article></div>
+          <div class="grid stats"><article class="stat-card"><div class="stat-top">Income recorded<span class="stat-icon"><i data-lucide="arrow-down-left"></i></span></div><div class="stat-value" id="reportIn">₦0.00</div><div class="stat-foot">Selected reporting period</div></article><article class="stat-card"><div class="stat-top">Spending recorded<span class="stat-icon"><i data-lucide="arrow-up-right"></i></span></div><div class="stat-value" id="reportOut">₦0.00</div><div class="stat-foot">Selected reporting period</div></article><article class="stat-card"><div class="stat-top">Net movement<span class="stat-icon"><i data-lucide="scale"></i></span></div><div class="stat-value" id="reportNet">₦0.00</div><div class="stat-foot">Income less spending</div></article><article class="stat-card"><div class="stat-top">Recorded entries<span class="stat-icon"><i data-lucide="files"></i></span></div><div class="stat-value" id="reportCount">0</div><div class="stat-foot">All statuses</div></article></div>
           <article class="panel"><div class="panel-head"><div><h2>Income and expenditure</h2><p>Based on the currently loaded transaction records</p></div></div><div class="chart-wrap"><canvas id="reportChart"></canvas></div><div class="legend"><span><i></i> Income</span><span><i class="out"></i> Expenditure</span></div></article>
           <div class="notice" style="margin-top:18px"><strong>Reporting note:</strong> Reports are only as complete as the data supplied by the connected provider or authorised imports. They are not substitutes for official bank statements or audited accounts.</div>
         </section>
         <section class="page hidden" id="page-notifications">
           <div class="page-head"><div><div class="eyebrow">STAY INFORMED</div><h1>Updates & notifications</h1><p>Important account and academy activity in one place.</p></div></div>
-          <article class="panel" id="notificationList"><div class="quick-list"><div class="quick-item"><div class="quick-icon"><i data-lucide="shield-check"></i></div><div><strong>Welcome to Academy Treasury</strong><small>Your financial transparency workspace is ready to explore.</small></div></div><div class="quick-item"><div class="quick-icon"><i data-lucide="refresh-cw"></i></div><div><strong>Provider connection pending</strong><small>Live account updates will appear after an authorised integration is configured.</small></div></div></div></article>
+          <article class="panel" id="notificationList"><div class="empty">No notifications have been recorded yet.</div></article>
         </section>
         <section class="page hidden" id="page-profile">
           <div class="page-head"><div><div class="eyebrow">YOUR ACCOUNT</div><h1>My profile</h1><p>Manage your personal information and account access.</p></div></div>
-          <div class="grid settings-grid"><article class="panel"><div class="profile-card" style="padding:0 0 22px"><div class="avatar" id="profileAvatar">AT</div><div><h3 id="profileName">Preview Member</h3><p id="profileEmail">preview@example.com</p></div></div><div class="field"><label>Full name</label><input id="editName" placeholder="Your full name"></div><div class="field"><label>Email address</label><input id="editEmail" disabled></div><button class="btn btn-primary" id="saveProfile">Save profile</button></article><article class="panel"><div class="panel-head"><h2>Access & security</h2></div><div class="setting-row"><div><strong>Account role</strong><small id="profileRole">Member · read-only access</small></div><i data-lucide="badge-check" style="color:var(--green)"></i></div><div class="setting-row"><div><strong>Password</strong><small>Managed securely by Firebase Authentication</small></div><button class="text-btn" id="profileReset">Reset</button></div><div class="setting-row"><div><strong>Financial permissions</strong><small>Viewing only. No transfers or withdrawals.</small></div><i data-lucide="eye" style="color:var(--green)"></i></div></article></div>
+          <div class="grid settings-grid"><article class="panel"><div class="profile-card" style="padding:0 0 22px"><div class="avatar" id="profileAvatar">AT</div><div><h3 id="profileName">Academy Member</h3><p id="profileEmail">—</p></div></div><div class="field"><label>Full name</label><input id="editName" placeholder="Your full name"></div><div class="field"><label>Email address</label><input id="editEmail" disabled></div><button class="btn btn-primary" id="saveProfile">Save profile</button></article><article class="panel"><div class="panel-head"><h2>Access & security</h2></div><div class="setting-row"><div><strong>Account role</strong><small id="profileRole">Member · read-only access</small></div><i data-lucide="badge-check" style="color:var(--green)"></i></div><div class="setting-row"><div><strong>Password</strong><small>Managed securely by Firebase Authentication</small></div><button class="text-btn" id="profileReset">Reset</button></div><div class="setting-row"><div><strong>Financial permissions</strong><small>Viewing only. No transfers or withdrawals.</small></div><i data-lucide="eye" style="color:var(--green)"></i></div></article></div>
         </section>
         <section class="page hidden" id="page-members">
-          <div class="page-head"><div><div class="eyebrow">PEOPLE & PERMISSIONS</div><h1>Academy members</h1><p>Review registered users and their access status.</p></div></div><article class="panel"><div class="notice">Member administration is available in the interface preview. Real role changes must be performed through a trusted backend or Firebase Admin SDK—not by a browser-side role editor.</div><div class="table-wrap" style="margin-top:15px"><table><thead><tr><th>Member</th><th>Email</th><th>Role</th><th>Status</th></tr></thead><tbody id="memberRows"><tr><td>Preview Member</td><td>preview@example.com</td><td>Member</td><td><span class="pill">Active</span></td></tr></tbody></table></div></article>
+          <div class="page-head"><div><div class="eyebrow">PEOPLE & PERMISSIONS</div><h1>Academy members</h1><p>View registered users and their access status.</p></div></div><article class="panel"><div class="notice">New member registrations are activated automatically. This page is for viewing member accounts; no approval step is required.</div><div class="table-wrap" style="margin-top:15px"><table><thead><tr><th>Member</th><th>Email</th><th>Role</th><th>Status</th></thead><tbody id="memberRows"></tbody></table></div><div id="membersEmpty" class="empty">No member records are available.</div></article>
         </section>
         <section class="page hidden" id="page-settings">
-          <div class="page-head"><div><div class="eyebrow">PLATFORM CONTROL</div><h1>Admin settings</h1><p>Configure the academy identity and presentation.</p></div></div><div class="grid settings-grid"><article class="panel"><div class="panel-head"><h2>Academy branding</h2></div><div class="field"><label>Application name</label><input id="brandInput" value="Academy Treasury"></div><div class="field"><label>Academy / organisation name</label><input id="academyInput" value="Your Academy"></div><div class="field"><label>Currency</label><select id="currencyInput"><option value="NGN">NGN — Nigerian Naira (₦)</option><option value="GHS">GHS — Ghanaian Cedi</option><option value="USD">USD — US Dollar</option><option value="GBP">GBP — British Pound</option></select></div><button class="btn btn-primary" id="saveBrand">Save branding</button></article><article class="panel"><div class="panel-head"><h2>Account connection</h2></div><div class="setting-row"><div><strong>Bank / fintech provider</strong><small>Not connected yet</small></div><span class="pill pending">Pending</span></div><div class="setting-row"><div><strong>Last successful sync</strong><small>Awaiting provider integration</small></div><span>—</span></div><div class="setting-row"><div><strong>Webhook status</strong><small>Not configured</small></div><span class="pill pending">Pending</span></div><div class="notice" style="margin-top:14px">Provider credentials and webhook secrets will be stored only in a secure backend environment, never in this HTML file or public Firestore documents.</div></article></div>
+          <div class="page-head"><div><div class="eyebrow">PLATFORM CONTROL</div><h1>Admin settings</h1><p>Configure the academy identity and presentation.</p></div></div><div class="grid settings-grid"><article class="panel"><div class="panel-head"><h2>Academy branding</h2></div><div class="field"><label>Application name</label><input id="brandInput" value="Academy Treasury"></div><div class="field"><label>Academy / organisation name</label><input id="academyInput" value="Your Academy"></div><div class="field"><label>Currency</label><select id="currencyInput"><option value="NGN">NGN — Nigerian Naira (₦)</option><option value="GHS">GHS — Ghanaian Cedi</option><option value="USD">USD — US Dollar</option><option value="GBP">GBP — British Pound</option></select></div><button class="btn btn-primary" id="saveBrand">Save branding</button></article><article class="panel"><div class="panel-head"><h2>Account connection</h2></div><div class="setting-row"><div><strong>Source system</strong><small>Invoice X Pro · Firebase project integration</small></div><span class="pill pending">Setup required</span></div><div class="setting-row"><div><strong>Last successful sync</strong><small id="adminLastSync">No sync has completed yet</small></div><span>—</span></div><div class="setting-row"><div><strong>Ledger ingestion</strong><small>Trusted server-to-server integration</small></div><span class="pill pending">Setup required</span></div><div class="notice" style="margin-top:14px">Provider credentials and webhook secrets will be stored only in a secure backend environment, never in this HTML file or public Firestore documents.</div></article></div>
         </section>
         <section class="page hidden" id="page-audit">
           <div class="page-head"><div><div class="eyebrow">GOVERNANCE</div><h1>Audit trail</h1><p>Track important administrative events.</p></div></div><article class="panel"><div class="empty"><i data-lucide="clipboard-list"></i><br>Audit events will appear here when trusted backend logging is configured.</div></article>
         </section>
-        <footer style="padding:24px 2px;color:#9aa7a2;font-size:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span>© <span id="year"></span> <span id="footerBrand">Academy Treasury</span>. Built for clarity and trust.</span><span>Read-only financial visibility · <span id="footerMode">Preview mode</span></span></footer>
+        <footer style="padding:24px 2px;color:#9aa7a2;font-size:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><span>© <span id="year"></span> <span id="footerBrand">Academy Treasury</span>. Built for clarity and trust.</span><span>Read-only financial visibility · Live ledger data</span></footer>
       </div>
     </main>
   </div>
@@ -137,24 +147,14 @@
       measurementId: "G-YFSPC7FS2C"
     };
     const FIREBASE_READY = !Object.values(FIREBASE_CONFIG).some(v => String(v).startsWith("YOUR_"));
-
     let firebaseApp, auth, db, onAuthStateChanged, createUserWithEmailAndPassword,
         signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile,
         doc, setDoc, getDoc, collection, query, where, orderBy, limit, onSnapshot,
         getDocs, serverTimestamp;
-    let currentUser = null, currentProfile = null, previewMode = false;
+    let currentUser = null, currentProfile = null;
     let activePage = "dashboard", currencyCode = "NGN";
     const $ = id => document.getElementById(id);
-    const sampleTransactions = [
-      {id:"AT-2026-00128",name:"Chika Nwosu",description:"Academy development contribution",reference:"TRF-8A21F9",date:"2026-11-25T10:24:00",type:"in",status:"completed",amount:150000},
-      {id:"AT-2026-00127",name:"Facility maintenance",description:"Repairs and maintenance",reference:"PAY-6B11D2",date:"2026-11-24T14:05:00",type:"out",status:"completed",amount:85000},
-      {id:"AT-2026-00126",name:"Ifeanyi Okoro",description:"Monthly academy dues",reference:"TRF-4C90A1",date:"2026-11-23T09:12:00",type:"in",status:"completed",amount:25000},
-      {id:"AT-2026-00125",name:"Learning materials",description:"Books and learning resources",reference:"PAY-7D21E0",date:"2026-11-21T16:40:00",type:"out",status:"pending",amount:42000},
-      {id:"AT-2026-00124",name:"Amara Eze",description:"Special donation",reference:"TRF-3F51C7",date:"2026-11-20T11:33:00",type:"in",status:"completed",amount:200000},
-      {id:"AT-2026-00123",name:"Transport support",description:"Academy transport expenses",reference:"PAY-1A74B8",date:"2026-11-19T13:17:00",type:"out",status:"completed",amount:65000},
-      {id:"AT-2026-00122",name:"David Umeh",description:"Membership contribution",reference:"TRF-2D08E5",date:"2026-11-18T08:55:00",type:"in",status:"completed",amount:50000}
-    ];
-    let transactions = [...sampleTransactions];
+    let transactions = [];
 
     const formatMoney = n => new Intl.NumberFormat("en-NG",{style:"currency",currency:currencyCode,minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(n||0));
     const initials = name => (name||"AT").trim().split(/\s+/).slice(0,2).map(x=>x[0]?.toUpperCase()||"").join("");
@@ -164,7 +164,7 @@
     function authMode(mode){const reg=mode==="register";$("authTitle").textContent=reg?"Create your account":"Welcome back";$("authSubtitle").textContent=reg?"Join your academy's financial transparency workspace.":"Sign in to view your academy's financial activity.";$("nameField").classList.toggle("hidden",!reg);$("confirmField").classList.toggle("hidden",!reg);$("forgotBtn").classList.toggle("hidden",reg);$("authSubmit").innerHTML=reg?'Create account <i data-lucide="arrow-right"></i>':'Sign in <i data-lucide="arrow-right"></i>';$("loginTab").classList.toggle("active",!reg);$("registerTab").classList.toggle("active",reg);$("authSwitch").innerHTML=reg?'Already have an account? <button class="text-btn" id="switchMode">Sign in</button>':'New to Academy Treasury? <button class="text-btn" id="switchMode">Create an account</button>';$("switchMode").onclick=()=>authMode(reg?"login":"register");icons();}
     $("loginTab").onclick=()=>authMode("login");$("registerTab").onclick=()=>authMode("register");$("switchMode").onclick=()=>authMode("register");
     async function initFirebase(){
-      if(!FIREBASE_READY){$("demoNotice").classList.remove("hidden");return false;}
+      if(!FIREBASE_READY){toast("Firebase configuration is incomplete. Sign-in is disabled.",true);return false;}
       try{
         const appMod=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js");
         const authMod=await import("https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js");
@@ -174,47 +174,69 @@
         ({onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,updateProfile}=authMod);
         db=dbMod.getFirestore(firebaseApp);
         ({doc,setDoc,getDoc,collection,query,where,orderBy,limit,onSnapshot,getDocs,serverTimestamp}=dbMod);
-        onAuthStateChanged(auth, async user=>{if(user){currentUser=user;await loadUserProfile(user);showApp();}else{currentUser=null;currentProfile=null;if(!previewMode)showAuth();}});
+        onAuthStateChanged(auth, async user=>{
+          if(user){
+            currentUser=user;
+            try{await loadUserProfile(user);}catch(e){console.error(e);toast("Could not load your access profile. Contact an administrator.",true);await signOut(auth);return;}
+            if(currentProfile?.status==="active") showApp(); else showPendingScreen();
+          }else{currentUser=null;currentProfile=null;showAuth();}
+        });
         return true;
       }catch(e){console.error(e);toast("Firebase could not initialise. Check your configuration and hosting.",true);return false;}
     }
     async function loadUserProfile(user){
       const ref=doc(db,"users",user.uid);const snap=await getDoc(ref);
       if(snap.exists()) currentProfile=snap.data();
-      else {currentProfile={uid:user.uid,fullName:user.displayName||user.email.split("@")[0],email:user.email,role:"member",status:"active",organizationId:"academy-default",createdAt:serverTimestamp()};await setDoc(ref,currentProfile);}
-      if(currentProfile.status==="suspended"){await signOut(auth);toast("This account is currently suspended. Contact an administrator.",true);return;}
+      else {
+        // Create a member profile automatically for authenticated users.
+        // New accounts are active immediately; no administrator approval is required.
+        currentProfile={uid:user.uid,fullName:user.displayName||user.email.split("@")[0],email:user.email,role:"member",status:"active",organizationId:"academy-default",createdAt:serverTimestamp()};
+        await setDoc(ref,currentProfile);
+      }
       currentProfile={...currentProfile,uid:user.uid,email:user.email};
+      // Convert accounts left pending by the earlier approval workflow to active.
+      if(currentProfile.status==="pending"){
+        await setDoc(ref,{status:"active",activatedAt:serverTimestamp()},{merge:true});
+        currentProfile={...currentProfile,status:"active"};
+      }
     }
-    function showAuth(){$("authScreen").classList.remove("hidden");$("appShell").classList.add("hidden");}
+    function showAuth(){$("authScreen").classList.remove("hidden");$("pendingScreen").classList.add("hidden");$("appShell").classList.add("hidden");}
+    function showPendingScreen(){
+      $("authScreen").classList.add("hidden");$("appShell").classList.add("hidden");$("pendingScreen").classList.remove("hidden");
+      const status=currentProfile?.status||"inactive";
+      $("pendingTitle").textContent=status==="rejected"?"Account access unavailable":status==="suspended"?"Account suspended":"Account inactive";
+      $("pendingMessage").textContent=status==="rejected"?"This account is inactive. Please contact an Academy Treasury administrator for assistance.":status==="suspended"?"Access to this account has been suspended. Please contact an authorised administrator.":"This account is not active. Please contact an authorised administrator.";
+      icons();
+    }
+    $("pendingSignOut").onclick=async()=>{try{await signOut(auth);}catch(e){toast("Could not sign out. Try again.",true);}};
     function showApp(){
-      $("authScreen").classList.add("hidden");$("appShell").classList.remove("hidden");
+      $("authScreen").classList.add("hidden");$("pendingScreen").classList.add("hidden");$("appShell").classList.remove("hidden");
       const name=currentProfile?.fullName||"Academy Member",role=currentProfile?.role||"member";
       $("sideName").textContent=name;$("topName").textContent=name;$("sideAvatar").textContent=initials(name);$("topAvatar").textContent=initials(name);$("profileAvatar").textContent=initials(name);
       $("sideRole").textContent=role==="super_admin"?"Super administrator":role==="treasurer"?"Treasurer":role==="president"?"President":"Member access";
-      $("profileName").textContent=name;$("profileEmail").textContent=currentUser?.email||"preview@example.com";$("editName").value=name;$("editEmail").value=currentUser?.email||"preview@example.com";$("profileRole").textContent=role.replace("_"," ")+" · "+(role==="member"?"read-only access":"administrative access");
+      $("profileName").textContent=name;$("profileEmail").textContent=currentUser?.email||"—";$("editName").value=name;$("editEmail").value=currentUser?.email||"—";$("profileRole").textContent=role.replace("_"," ")+" · "+(role==="member"?"read-only access":"administrative access");
       document.querySelectorAll(".admin-only").forEach(el=>el.classList.toggle("hidden",!["super_admin","treasurer","president"].includes(role)));
-      $("footerMode").textContent=previewMode?"Interactive preview":"Firebase connected";$("dataSource").textContent=previewMode?"Sample preview data":"Cloud Firestore";renderAll();go("dashboard");icons();
-      if(!previewMode)subscribeTransactions();
+      $("dataSource").textContent="Invoice X Pro ledger";renderAll();go("dashboard");icons();
+      subscribeTransactions();
     }
     $("authForm").addEventListener("submit",async e=>{
       e.preventDefault();const email=$("email").value.trim(),password=$("password").value,reg=!$("confirmField").classList.contains("hidden");
       if(reg){if($("fullName").value.trim().length<2)return toast("Please enter your full name.",true);if(password!==$("confirmPassword").value)return toast("Your passwords do not match.",true);if(password.length<8)return toast("Use a password with at least 8 characters.",true);}
-      if(!FIREBASE_READY)return toast("Add your Firebase project configuration first, or use the interactive preview.",true);
+      if(!FIREBASE_READY)return toast("Firebase configuration is incomplete. Contact the administrator.",true);
       const btn=$("authSubmit");btn.disabled=true;btn.textContent="Please wait…";
       try{
-        if(reg){const cred=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(cred.user,{displayName:$("fullName").value.trim()});const profile={uid:cred.user.uid,fullName:$("fullName").value.trim(),email,role:"member",status:"active",organizationId:"academy-default",createdAt:serverTimestamp()};await setDoc(doc(db,"users",cred.user.uid),profile);currentUser=cred.user;currentProfile=profile;toast("Your account has been created.");showApp();}
+        if(reg){const cred=await createUserWithEmailAndPassword(auth,email,password);await updateProfile(cred.user,{displayName:$("fullName").value.trim()});const profile={uid:cred.user.uid,fullName:$("fullName").value.trim(),email,role:"member",status:"active",organizationId:"academy-default",createdAt:serverTimestamp()};await setDoc(doc(db,"users",cred.user.uid),profile);currentUser=cred.user;currentProfile=profile;showApp();toast("Account created. You can now use Academy Treasury.");}
         else await signInWithEmailAndPassword(auth,email,password);
       }catch(err){toast(authError(err.code),true);}finally{btn.disabled=false;authMode(reg?"register":"login");}
     });
     function authError(code){return ({ "auth/email-already-in-use":"This email is already registered.","auth/invalid-email":"Please enter a valid email address.","auth/weak-password":"Choose a stronger password.","auth/invalid-credential":"Email or password is incorrect.","auth/user-not-found":"No account was found for this email.","auth/too-many-requests":"Too many attempts. Please try again later.","auth/network-request-failed":"Network error. Check your internet connection."})[code]||"Something went wrong. Please try again.";}
     $("forgotBtn").onclick=async()=>{const email=$("email").value.trim();if(!email)return toast("Enter your email address first.",true);if(!FIREBASE_READY)return toast("Password reset becomes available after Firebase is configured.",true);try{await sendPasswordResetEmail(auth,email);toast("Password reset email sent. Check your inbox.");}catch(e){toast(authError(e.code),true);}};
-    $("demoBtn").onclick=()=>{previewMode=true;currentUser=null;currentProfile={fullName:"Preview Member",email:"preview@example.com",role:"super_admin",status:"active"};transactions=[...sampleTransactions];showApp();toast("You're exploring sample data. No real account is connected.");};
-    $("logoutBtn").onclick=async()=>{if(previewMode){previewMode=false;showAuth();return;}try{await signOut(auth);}catch(e){toast("Could not sign out. Try again.",true);}};
-    function go(page){activePage=page;document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));$("page-"+page)?.classList.remove("hidden");document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===page));$("crumbPage").textContent=({dashboard:"Overview",transactions:"Transactions",reports:"Reports",notifications:"Updates",profile:"My profile",members:"Members",settings:"Admin settings",audit:"Audit trail"})[page]||page;window.scrollTo({top:0,behavior:"smooth"});if(page==="reports")drawChart("reportChart");}
+    $("logoutBtn").onclick=async()=>{try{await signOut(auth);}catch(e){toast("Could not sign out. Try again.",true);}};
+    function go(page){activePage=page;document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));$("page-"+page)?.classList.remove("hidden");document.querySelectorAll(".nav-item").forEach(n=>n.classList.toggle("active",n.dataset.page===page));$("crumbPage").textContent=({dashboard:"Overview",transactions:"Transactions",reports:"Reports",notifications:"Updates",profile:"My profile",members:"Members",settings:"Admin settings",audit:"Audit trail"})[page]||page;window.scrollTo({top:0,behavior:"smooth"});if(page==="reports")drawChart("reportChart");if(page==="members")subscribeMembers();}
     document.querySelectorAll("[data-page]").forEach(el=>el.addEventListener("click",()=>go(el.dataset.page)));
     document.querySelectorAll("[data-goto]").forEach(el=>el.addEventListener("click",()=>go(el.dataset.goto)));
     $("topBell").onclick=()=>go("notifications");
-    function statusPill(status){return `<span class="pill ${status==="pending"?"pending":status==="failed"?"failed":""}">${status}</span>`;}
+    function statusPill(status){const safe=escapeHTML(status||"completed");return `<span class="pill ${status==="pending"?"pending":(["failed","rejected","suspended"].includes(status)?"failed":"")}">${safe}</span>`;}
     function txRow(t,all=false){const isIn=t.type==="in";return `<tr><td><div class="tx-person"><div class="tx-avatar">${initials(t.name||t.description)}</div><div><strong>${escapeHTML(t.name||t.description||"Account activity")}</strong><small>${escapeHTML(t.description||"")}</small></div></div></td><td>${escapeHTML(t.reference||t.providerReference||"—")}</td><td>${niceDate(t.date||t.transactionDate)}</td>${all?`<td>${isIn?"<span class='pill'>Incoming</span>":"<span class='pill pending'>Outgoing</span>"}</td>`:""}<td>${statusPill(t.status||"completed")}</td><td style="text-align:right" class="amount ${isIn?"in":"out"}">${isIn?"+":"−"}${formatMoney(t.amount)}</td></tr>`;}
     function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
     function renderAll(){
@@ -222,27 +244,54 @@
       $("statIn").textContent=formatMoney(inc);$("statOut").textContent=formatMoney(out);$("statCount").textContent=transactions.length;
       $("reportIn").textContent=formatMoney(inc);$("reportOut").textContent=formatMoney(out);$("reportNet").textContent=formatMoney(inc-out);$("reportCount").textContent=transactions.length;
       $("dashboardTx").innerHTML=transactions.slice(0,5).map(t=>txRow(t)).join("")||"";$("allTx").innerHTML=transactions.map(t=>txRow(t,true)).join("")||"";$("recentList").innerHTML=transactions.slice(0,4).map(t=>`<div class="quick-item"><div class="quick-icon"><i data-lucide="${t.type==="in"?"arrow-down-left":"arrow-up-right"}"></i></div><div style="min-width:0"><strong>${escapeHTML(t.name||t.description)}</strong><small>${niceDate(t.date)} · ${t.type==="in"?"Received":"Paid"}</small></div><strong style="margin-left:auto;white-space:nowrap;color:${t.type==="in"?"var(--green)":"var(--ink)"}">${t.type==="in"?"+":"−"}${formatMoney(t.amount)}</strong></div>`).join("");
-      $("heroBalance").textContent=formatMoney(2485600);$("statBalance").textContent=formatMoney(2485600);$("welcomeTitle").textContent=`Good ${new Date().getHours()<12?"morning":new Date().getHours()<17?"afternoon":"evening"}, ${(currentProfile?.fullName||"there").split(" ")[0]}`;
+      const ledgerBalance=inc-out;
+      $("heroBalance").textContent=formatMoney(ledgerBalance);$("statBalance").textContent=formatMoney(ledgerBalance);
+      $("ledgerSyncStatus").textContent=transactions.length?"Records loaded":"No entries yet";
+      $("syncTime").textContent=transactions.length?"latest records loaded":"awaiting first sync";
+      $("welcomeTitle").textContent=`Good ${new Date().getHours()<12?"morning":new Date().getHours()<17?"afternoon":"evening"}, ${(currentProfile?.fullName||"there").split(" ")[0]}`;
       $("year").textContent=new Date().getFullYear();drawChart("cashChart");icons();filterTransactions();
     }
     function filterTransactions(){const q=($("txSearch")?.value||"").toLowerCase(),type=$("txType")?.value||"all",status=$("txStatus")?.value||"all";const filtered=transactions.filter(t=>(type==="all"||t.type===type)&&(status==="all"||t.status===status)&&[t.name,t.description,t.reference,t.id].join(" ").toLowerCase().includes(q));$("allTx").innerHTML=filtered.map(t=>txRow(t,true)).join("");$("txEmpty").classList.toggle("hidden",filtered.length>0);}
     ["txSearch","txType","txStatus"].forEach(id=>$(id).addEventListener("input",filterTransactions));
-    function drawChart(id){const canvas=$(id);if(!canvas)return;const ctx=canvas.getContext("2d"),rect=canvas.getBoundingClientRect(),w=Math.max(280,rect.width),h=rect.height||190,dpr=window.devicePixelRatio||1;canvas.width=w*dpr;canvas.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);const months=["Jun","Jul","Aug","Sep","Oct","Nov"],income=[340,390,310,470,420,560],expense=[220,260,230,310,280,350],max=650,left=12,right=8,top=12,bottom=25,chartH=h-top-bottom,step=(w-left-right)/months.length;ctx.font="10px DM Sans";ctx.textAlign="center";for(let j=0;j<4;j++){const y=top+chartH*j/3;ctx.strokeStyle="#edf1ef";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();}months.forEach((m,i)=>{const x=left+step*i+step/2,bw=Math.min(17,step*.22),a=income[i]/max*chartH,b=expense[i]/max*chartH;ctx.fillStyle="#1ba77e";roundRect(ctx,x-bw-2,top+chartH-a,bw,a,5);ctx.fill();ctx.fillStyle="#e6b76e";roundRect(ctx,x+2,top+chartH-b,bw,b,5);ctx.fill();ctx.fillStyle="#8a9994";ctx.fillText(m,x,h-6);});}
+    function drawChart(id){
+      const canvas=$(id);if(!canvas)return;const ctx=canvas.getContext("2d"),rect=canvas.getBoundingClientRect(),w=Math.max(280,rect.width),h=rect.height||190,dpr=window.devicePixelRatio||1;
+      canvas.width=w*dpr;canvas.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+      const months=[];const now=new Date();for(let n=5;n>=0;n--){const d=new Date(now.getFullYear(),now.getMonth()-n,1);months.push({key:`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`,label:d.toLocaleString("en-NG",{month:"short"}),income:0,expense:0});}
+      const byKey=new Map(months.map(m=>[m.key,m]));
+      transactions.filter(t=>t.status==="completed").forEach(t=>{const d=new Date(t.date||t.transactionDate);if(isNaN(d))return;const m=byKey.get(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`);if(!m)return;const amount=Number(t.amount)||0;if(t.type==="in")m.income+=amount;else if(t.type==="out")m.expense+=amount;});
+      const max=Math.max(1,...months.flatMap(m=>[m.income,m.expense])),left=12,right=8,top=12,bottom=25,chartH=h-top-bottom,step=(w-left-right)/months.length;
+      ctx.font="10px DM Sans";ctx.textAlign="center";
+      for(let j=0;j<4;j++){const y=top+chartH*j/3;ctx.strokeStyle="#edf1ef";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(w-right,y);ctx.stroke();}
+      months.forEach((m,i)=>{const x=left+step*i+step/2,bw=Math.min(17,step*.22),a=m.income/max*chartH,b=m.expense/max*chartH;ctx.fillStyle="#1ba77e";roundRect(ctx,x-bw-2,top+chartH-a,bw,a,5);ctx.fill();ctx.fillStyle="#e6b76e";roundRect(ctx,x+2,top+chartH-b,bw,b,5);ctx.fill();ctx.fillStyle="#8a9994";ctx.fillText(m.label,x,h-6);});
+    }
     function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,Math.max(0,h),[r,r,0,0]);}
     window.addEventListener("resize",()=>{drawChart("cashChart");drawChart("reportChart");});
     function csvExport(){const rows=[["Name","Description","Reference","Date","Type","Status","Amount"],...transactions.map(t=>[t.name,t.description,t.reference,t.date,t.type,t.status,t.amount])];const csv=rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n");const blob=new Blob([csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="academy-treasury-transactions.csv";a.click();URL.revokeObjectURL(url);toast("Transaction CSV exported.");}
-    $("exportTx").onclick=csvExport;$("reportExport").onclick=csvExport;$("dashboardRefresh").onclick=()=>{renderAll();toast(previewMode?"Preview refreshed.":"Dashboard refreshed from the latest loaded data.");};
-    $("saveProfile").onclick=async()=>{const name=$("editName").value.trim();if(name.length<2)return toast("Enter a valid name.",true);if(previewMode){currentProfile.fullName=name;showApp();return toast("Preview profile updated.");}if(!currentUser)return;try{await updateProfile(currentUser,{displayName:name});await setDoc(doc(db,"users",currentUser.uid),{fullName:name},{merge:true});currentProfile.fullName=name;showApp();toast("Profile updated.");}catch(e){toast("Could not update profile.",true);}};
+    $("exportTx").onclick=csvExport;$("reportExport").onclick=csvExport;$("dashboardRefresh").onclick=()=>{renderAll();toast("Dashboard recalculated from the currently loaded ledger records.");};
+    $("saveProfile").onclick=async()=>{const name=$("editName").value.trim();if(name.length<2)return toast("Enter a valid name.",true);if(!currentUser)return;try{await updateProfile(currentUser,{displayName:name});await setDoc(doc(db,"users",currentUser.uid),{fullName:name},{merge:true});currentProfile.fullName=name;showApp();toast("Profile updated.");}catch(e){toast("Could not update profile.",true);}};
     $("profileReset").onclick=async()=>{if(!currentUser)return toast("Password reset is available after sign-in is connected.");try{await sendPasswordResetEmail(auth,currentUser.email);toast("Password reset email sent.");}catch(e){toast("Could not send reset email.",true);}};
-    $("saveBrand").onclick=()=>{const name=$("brandInput").value.trim();if(!name)return toast("Enter an application name.",true);$("sideBrand").textContent=name;$("footerBrand").textContent=name;toast("Branding preview updated. Save to Firestore will be enabled with admin rules.");};
+    $("saveBrand").onclick=()=>{const name=$("brandInput").value.trim();if(!name)return toast("Enter an application name.",true);$("sideBrand").textContent=name;$("footerBrand").textContent=name;toast("Branding changes require a trusted admin configuration service.");};
+    let membersUnsubscribe=null;
+    function subscribeMembers(){
+      if(!currentUser||!currentProfile||!["super_admin","treasurer","president"].includes(currentProfile.role))return;
+      if(membersUnsubscribe)membersUnsubscribe();
+      const q=query(collection(db,"users"),where("organizationId","==",currentProfile.organizationId||"academy-default"),limit(200));
+      membersUnsubscribe=onSnapshot(q,snap=>{
+        const rows=snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>{
+          const av=a.createdAt?.toMillis?.()||0,bv=b.createdAt?.toMillis?.()||0;return bv-av;
+        });
+        $("memberRows").innerHTML=rows.map(m=>`<tr><td>${escapeHTML(m.fullName||"—")}</td><td>${escapeHTML(m.email||"—")}</td><td>${escapeHTML(String(m.role||"member").replaceAll("_"," "))}</td><td>${statusPill(m.status||"active")}</td></tr>`).join("");
+        $("membersEmpty").classList.toggle("hidden",rows.length>0);
+      },err=>{console.error("Member listener:",err);toast("Could not load members. Check administrator Firestore rules.",true);});
+    }
+
     async function subscribeTransactions(){
       // Realtime listener. Firestore security rules must restrict this collection
       // to authenticated members of the matching organisation.
-      try{const q=query(collection(db,"transactions"),where("organizationId","==",currentProfile.organizationId||"academy-default"),orderBy("transactionDate","desc"),limit(100));onSnapshot(q,snap=>{transactions=snap.docs.map(d=>({id:d.id,...d.data(),date:d.data().transactionDate?.toDate?.()||d.data().transactionDate}));renderAll();},err=>{console.warn("Transaction listener:",err);toast("Could not load cloud transactions. Check Firestore rules.",true);});}catch(e){console.warn(e);}
+      try{const q=query(collection(db,"transactions"),where("organizationId","==",currentProfile.organizationId||"academy-default"));onSnapshot(q,snap=>{transactions=snap.docs.map(d=>{const x=d.data();return {id:d.id,...x,date:x.transactionDate?.toDate?.()||x.occurredAt?.toDate?.()||x.transactionDate||x.occurredAt};}).sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));renderAll();},err=>{console.warn("Transaction listener:",err);toast("Could not load ledger records. Check Treasury Firestore rules and backend sync.",true);});}catch(e){console.warn(e);}
     }
     $("chartPeriod").onchange=()=>drawChart("cashChart");
-    $("demoBtn").style.display=FIREBASE_READY?"none":"block";
-    if(FIREBASE_READY)initFirebase();else{showAuth();$("demoNotice").classList.remove("hidden");}
+    if(FIREBASE_READY)initFirebase();else showAuth();
     icons();
   </script>
 </body>
